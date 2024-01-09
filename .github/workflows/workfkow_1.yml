@@ -35,17 +35,18 @@ jobs:
 
 
       - name: Build builder image
-          uses: docker/build-push-action@v3
-          with:
-            context: .
-            file: ./Dockerfile.${{ env.BASE_IMAGE }}
-            push: false
-            tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile.${{ env.BASE_IMAGE }}
+          push: false
+          tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
       
       - name: Build release image
-          uses: docker/build-push-action@v3
-          with:
-            context: .
-            file: ./Dockerfile.${{ env.BASE_IMAGE }}
-            push: false
-            tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          file: ./Dockerfile.${{ env.BASE_IMAGE }}
+          push: false
+          tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
+
