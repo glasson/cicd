@@ -4,7 +4,7 @@ set -e
 SCRIPT_DIR=$(readlink -f $(dirname $BASH_SOURCE))
 ROOT_DIR=$(readlink -f "$SCRIPT_DIR/..")
 
-source $ROOT_DIR/.env
+# source $ROOT_DIR/.env
 SRC_PATH="$ROOT_DIR/$SRC_PATH"
 BUILD_PATH="$ROOT_DIR/$BUILD_PATH"
 
