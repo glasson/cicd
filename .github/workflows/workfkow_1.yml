@@ -35,7 +35,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ../Dockerfile
+          file: ../../Dockerfile
           push: false
           tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
       
@@ -43,7 +43,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           context: .
-          file: ../Dockerfile
+          file: ../../Dockerfile
           push: false
           tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
 
