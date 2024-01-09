@@ -1,0 +1,51 @@
+name: Docker Github Actions
+
+on: 
+  workflow_dispatch:
+    inputs:
+      tag:
+        default: latest
+        description: image tag
+      base_image:
+        required: true
+        type: choice
+        default: alpine
+        options:
+          - alpine
+          - ubuntu
+  push:
+
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      BUILDER_IMAGE: cv-builder
+      RELEASE_IMAGE: cv
+      TAG: "${{ inputs.tag != '' && inputs.tag || 'latest' }}"
+      BASE_IMAGE: "${{ inputs.base_image != '' && inputs.base_image || 'alpine' }}"
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Login to DockerHub
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login --username 
+              ${{ secrets.DOCKER_USERNAME }} --password-stdin
+
+
+      - name: Build builder image
+          uses: docker/build-push-action@v3
+          with:
+            context: .
+            file: ./Dockerfile.${{ env.BASE_IMAGE }}
+            push: false
+            tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
+      
+      - name: Build release image
+          uses: docker/build-push-action@v3
+          with:
+            context: .
+            file: ./Dockerfile.${{ env.BASE_IMAGE }}
+            push: false
+            tags: ${{ env.BUILDER_IMAGE }}:${{ env.TAG }}
