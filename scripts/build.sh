@@ -5,7 +5,7 @@ SCRIPT_DIR=$(readlink -f $(dirname $BASH_SOURCE))
 ROOT_DIR=$(readlink -f "$SCRIPT_DIR/..")
 BUILD_PATH="$ROOT_DIR/$BUILD_PATH"
 
-source $ROOT_DIR/.env
+# source $ROOT_DIR/.env
 
 echo "Building yamlcv"
 $SCRIPT_DIR/generate_cv.sh
